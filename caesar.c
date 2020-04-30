@@ -5,6 +5,8 @@
 #include <ctype.h>
 
 
+
+
 int main(int argc, string argv[]){
 
     int key;
@@ -12,12 +14,20 @@ int main(int argc, string argv[]){
     char letterA = 97;
     
     if(argc != 2){
-        printf("Error My dude\n");
+        printf("Usage: ./caesar key\n");
         return 1;
-    }else{
+    } else{
+        for(int i=0, n=strlen(argv[1]); i< n; ++i){
+            if(!isdigit(argv[1][i])){
+                printf("Usage: ./caesar key\n");
+                return 1;
+            }
+        }
         key = atoi(argv[1]);
     }
     
+     
+ 
     s= get_string("Plain Text: ");
     
     for(int i =0, n=strlen(s); i<n;++i){
@@ -36,5 +46,9 @@ int main(int argc, string argv[]){
         }else
             printf("%c",s[i]);
     }
+    printf("\n");
     return 0;
 }
+
+   
+
