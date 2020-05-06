@@ -1,3 +1,6 @@
+//input argc and agrv
+//example ./runoff.c Alice Bob Charlie - Min of two candidates
+
 #include <cs50.h>
 #include <stdio.h>
 #include <string.h>
