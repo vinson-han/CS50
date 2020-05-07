@@ -120,14 +120,7 @@ bool vote(int rank, string name, int ranks[])
 void record_preferences(int ranks[])
 {   
     //find factorial
-    int sum = 0;
-    for (int i = 0; i < candidate_count; i++)
-    {
-        sum += i;
-        //printf("Sum:%i\n",i);
-    }
-    
- 
+
     return;
 }
 
