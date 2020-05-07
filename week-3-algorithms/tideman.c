@@ -119,23 +119,64 @@ bool vote(int rank, string name, int ranks[])
 // Update preferences given one voter's ranks
 void record_preferences(int ranks[])
 {   
-    //find factorial
-
+    for (int i = 0; i < candidate_count; i++)
+    {
+        for (int j = i; j < candidate_count; j++)
+        {   
+            if(i != j)
+            {
+                //printf("[%i][%i]\n",i,j);
+                //printf("rank[i]:%i rank[j]%i\n",ranks[i],ranks[j]);
+                preferences[ranks[i]][ranks[j]]++;
+            }
+            //preferences[ranks[i]][ranks[j]]++;
+        }
+    }
     return;
 }
 
 // Record pairs of candidates where one is preferred over the other
 void add_pairs(void)
 {
-    // TODO
+    for (int i = 0; i < candidate_count; i++)
+    {
+        for (int j = 0; j < candidate_count; j++)
+        {
+               if(preferences[i][j] != preferences[j][i] && preferences[i][j] != 0)
+               {
+                    if(preferences[i][j] > preferences[j][i])
+                    {
+                        pairs[pair_count].winner = i;
+                        pairs[pair_count].loser = j;
+                        pair_count++;
+                    }
+                    else
+                    {
+                        pairs[pair_count].winner = j;
+                        pairs[pair_count].loser = i;
+                        pair_count++;
+                    }
+                        //printf("[%i],[%i]:%i\n",i,j,preferences[i][j]);
+
+               }
+        
+           
+        }
+    }
     return;
 }
+
 
 // Sort pairs in decreasing order by strength of victory
 void sort_pairs(void)
 {
-    // TODOd
-    return;
+    pair temp[MAX * (MAX - 1) / 2];;
+    int count = 0;
+    int max = 0;
+    printf("Pair Count =%i",count);
+    
+        //printf("[%i],[%i]\n",temp[count].winner,temp[count].loser);
+    }
 }
 
 // Lock pairs into the candidate graph in order, without creating cycles
