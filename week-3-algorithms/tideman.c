@@ -33,7 +33,8 @@ void add_pairs(void);
 void sort_pairs(void);
 void lock_pairs(void);
 void print_winner(void);
-
+void mergeSort(pair* p,int left, int right);
+void merge(pair * p, int left, int mid, int right);
 int main(int argc, string argv[])
 {
     // Check for invalid usage
@@ -170,14 +171,67 @@ void add_pairs(void)
 // Sort pairs in decreasing order by strength of victory
 void sort_pairs(void)
 {
-    pair temp[MAX * (MAX - 1) / 2];;
-    int count = 0;
-    int max = 0;
-    printf("Pair Count =%i",count);
-    
-        //printf("[%i],[%i]\n",temp[count].winner,temp[count].loser);
-    }
+    mergeSort(pairs,0,pair_count);
+
 }
+void mergeSort(pair* p, int left, int right)
+{
+    if (left < right)
+    {
+        //Avoid Over Flow for Larger number
+        int m = left+ (right - 1) / 2;
+        //Sort first asnd second halves
+        mergeSort(p, left, m);
+        mergeSort(p, m+1, right);
+        
+        merge(p, left, m, right);
+
+    }
+
+}
+void merge(pair * p, int left, int mid, int right)
+{
+    int i,j,k;
+    int n1 = mid - left + 1;
+    int n2 = right - mid;
+
+    pair tempL[n1];
+    pair tempR[n2];
+
+    for (int i = 0; i < n1; i++)
+        tempL[i] = p[left + i];
+    for (int j = 0; j < n2; j++)
+        tempR[j] = p[mid + 1 + j];
+    
+    i = 0;
+    j = 0;
+    k = left;
+
+     while (i < n1 && j < n2) 
+    { 
+        if (preferences[tempL[i].winner][tempR[i].loser] <= preferences[tempL[i].winner][tempR[i].loser]) 
+        { 
+            p[k] = tempL[i]; 
+            i++; 
+        } 
+        else
+        { 
+            p[k] = tenpR[j]; 
+            j++; 
+        } 
+        k++; 
+    }
+    while (i < n1) 
+    { 
+        arr[k] = L[i]; 
+        i++; 
+        k++; 
+    } 
+
+
+    
+}
+
 
 // Lock pairs into the candidate graph in order, without creating cycles
 void lock_pairs(void)
@@ -192,4 +246,3 @@ void print_winner(void)
     // TODO
     return;
 }
-
