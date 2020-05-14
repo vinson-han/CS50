@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <math.h>
 int check(double x,double y);
-int cap255(double n);
+
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
 {
@@ -34,9 +34,9 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
     // printf("%iheight\n",height);
     // printf("%iwidth/2\n",width/2);
     // printf("%iheight\n",temp.rgbtBlue);
-    printf("%iheight\n",image[0][0].rgbtBlue);
-    printf("%iheight\n",image[0][0].rgbtGreen);
-    printf("%iheight\n",image[0][0].rgbtRed);
+    // printf("%iheight\n",image[0][0].rgbtBlue);
+    // printf("%iheight\n",image[0][0].rgbtGreen);
+    // printf("%iheight\n",image[0][0].rgbtRed);
     for (int i = 0,h = height; i < h; i++)
     {
         for (int j = 0, w = width; j <= width/2; j++)
@@ -108,9 +108,11 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 }
 int check(double x,double y)
 {
-    double value = sqrt(x * x + y * y);
-    int r = (int)round(value);
-    if (r > 255)
+    
+    int r = (int)round(sqrt((x * x) + (y * y)));
+    if (r < 0)
+        return 0;
+    if (r >= 255)
         return 255;
     return r;
 }
@@ -119,165 +121,61 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
 {
     
     RGBTRIPLE copy[height][width];
+    int aGX[3][3] = {{-1,0,1},{-2,0,2},{-1,0,1}};
+    int aGY[3][3] = {{-1,-2,-1},{0,0,0},{1,2,1}};
+    // int aGy[3][3] = {{-1,-2,-1},{0,0,0},{1,2,1}};
     for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
         {
             copy[i][j] = image[i][j];
+           
         }
     }
-
-    // Main loop to sum up all values for each channel in each pixel relative to Gx and Gy
-    for (int i = 0; i < height; i++)
+    
+  
+    for (int i = 0,h = height; i < h; i++)
     {
-        for (int j = 0; j < width; j++)
-        {
-            float rGx, gGx, bGx, rGy, gGy, bGy;
-            rGx = gGx = bGx = rGy = gGy = bGy = 0;
+        for (int j = 0, w = width; j < w; j++)
+        {   
 
-            // Up
-            if (i > 0)
-            {
-                rGy += -2 * copy[i-1][j].rgbtRed;
-                gGy += -2 * copy[i-1][j].rgbtGreen;
-                bGy += -2 * copy[i-1][j].rgbtBlue;
-            }
-            // Down
-            if (i < height - 1)
-            {
+            double gxR = 0;
+            double gxG = 0;
+            double gxB = 0;
 
-                rGy += 2 * copy[i+1][j].rgbtRed;
-                gGy += 2 * copy[i+1][j].rgbtGreen;
-                bGy += 2 * copy[i+1][j].rgbtBlue;
-            }
-            // Left
-            if (j > 0)
-            {
-                rGx += -2 * copy[i][j-1].rgbtRed;
-                gGx += -2 * copy[i][j-1].rgbtGreen;
-                bGx += -2 * copy[i][j-1].rgbtBlue;
+            double gyR = 0;
+            double gyG = 0;
+            double gyB = 0;
 
-            }
-            // Right
-             if (j < height - 1)
+            // printf("[%i][%i]:\n",i,j);
+            // printf("Red,%i:\n",copy[i][j].rgbtRed);
+            for(int x = 0, startX = i-1; x < 3; x++,startX++)
             {
-                rGx += 2 * copy[i][j+1].rgbtRed;
-                gGx += 2 * copy[i][j+1].rgbtGreen;
-                bGx += 2 * copy[i][j+1].rgbtBlue;
-
+                 //printf("%i\n",x);
+                for (int y = 0,startY = j-1; y < 3; y++,startY++)
+                {
+                    
+                    if((startX >=0 && startY >= 0) && (startX <= h-1 && startY <= w-1))
+                    {
+                        //printf("Red,[%i][%i]%i:",startX,startY,aGX[x][y]);
+                        //printf("Copy,%i:\n",copy[startX][startY].rgbtRed);
+                        gxR += copy[startX][startY].rgbtRed * aGX[x][y];
+                        gyR += copy[startX][startY].rgbtRed * aGY[x][y];
+                        gxG += copy[startX][startY].rgbtGreen * aGX[x][y];
+                        gyG += copy[startX][startY].rgbtGreen * aGY[x][y];
+                        gxB += copy[startX][startY].rgbtBlue * aGX[x][y];
+                        gyB += copy[startX][startY].rgbtBlue * aGY[x][y];
+                        
+                    }
+        
+                }
             }
-            // Up left
-            if (i > 0 && j > 0)
-            {
-                // Note: change sign in Gx values here and the result changes side
-                rGx += -1 * copy[i-1][j-1].rgbtRed;
-                gGx += -1 * copy[i-1][j-1].rgbtGreen;
-                bGx += -1 * copy[i-1][j-1].rgbtBlue;
-                rGy += -1 * copy[i-1][j-1].rgbtRed;
-                gGy += -1 * copy[i-1][j-1].rgbtGreen;
-                bGy += -1 * copy[i-1][j-1].rgbtBlue;
-            }
-            // Up right
-            if (i > 0 && j < width - 1)
-            {
-                rGx += 1 * copy[i-1][j+1].rgbtRed;
-                gGx += 1 * copy[i-1][j+1].rgbtGreen;
-                bGx += 1 * copy[i-1][j+1].rgbtBlue;
-                rGy += -1 * copy[i-1][j+1].rgbtRed;
-                gGy += -1 * copy[i-1][j+1].rgbtGreen;
-                bGy += -1 * copy[i-1][j+1].rgbtBlue;
-            }
-            // Bottom right
-            if (i < height - 1  && j < width - 1)
-            {
-                rGx += 1 * copy[i+1][j+1].rgbtRed;
-                gGx += 1 * copy[i+1][j+1].rgbtGreen;
-                bGx += 1 * copy[i+1][j+1].rgbtBlue;
-                rGy += 1 * copy[i+1][j+1].rgbtRed;
-                gGy += 1 * copy[i+1][j+1].rgbtGreen;
-                bGy += 1 * copy[i+1][j+1].rgbtBlue;
-            }
-            // Bottom left
-            if (j < height - 1  && j > 0)
-            {
-                rGx += -1 * copy[i+1][j-1].rgbtRed;
-                gGx += -1 * copy[i+1][j-1].rgbtGreen;
-                bGx += -1 * copy[i+1][j-1].rgbtBlue;
-                rGy += 1 * copy[i+1][j-1].rgbtRed;
-                gGy += 1 * copy[i+1][j-1].rgbtGreen;
-                bGy += 1 * copy[i+1][j-1].rgbtBlue;
-            }
-
-            // Compute result
-            image[i][j].rgbtRed = (int) cap255(sqrt((rGx*rGx)+(rGy*rGy)));
-            image[i][j].rgbtGreen = (int) cap255(sqrt((gGx*gGx)+(gGy*gGy)));
-            image[i][j].rgbtBlue = (int) cap255(sqrt((bGx*bGx)+(bGy*bGy)));
+            image[i][j].rgbtRed = check(gxR,gyR);
+            image[i][j].rgbtGreen = check(gxG,gyG);
+            image[i][j].rgbtBlue = check(gxB,gyB);
         }
     }
+
+   
     return;
 }
-int cap255(double n)
-{
-    int result = 0;
-
-    if (n >= 255)
-    {
-        result = 255;
-    }
-    else if(n < 0)
-    {
-        result = 0;
-    }
-    else
-    {
-        result = (int) round(n);
-    }
-    return (result);
-}
-// Function to cap results at 255 maximum
-
-
-
-    // //sqrt(gx^2 + gx^2)
-    // int aGx[3][3] = {{-1,0,1},{-2,0,2},{-1,0,1}};
-    // int aGy[3][3] = {{-1,-2,-1},{0,0,0},{1,2,1}};
-    // //printf("%i",aGx[0][0]);
-    // for (int i = 0,h = height; i < h; i++)
-    // {
-    //     for (int j = 0, w = width; j < w; j++)
-    //     {   
-            
-    //         double gxR = 0;
-    //         double gxB = 0;
-    //         double gxG = 0;
-    //         double gyR = 0;
-    //         double gyB = 0;
-    //         double gyG = 0;
-
-    //         if(i-1 >= 0 && i+1 < h && j-1 >= 0 && j+1 < w)
-    //         {
-    //             //printf("-[%i][%i]\n",i,j);
-    //             for(int tx = 0, x = i -1; x <= i+1; x++,tx++)
-    //             {
-    //                 for(int ty=0, y = j-1; y <= j+1; y++,ty++)
-    //                 {
-    //                      gxR+= aGx[tx][ty] * image[x][y].rgbtRed;
-    //                      gxB+= aGx[tx][ty] * image[x][y].rgbtBlue;
-    //                      gxG+= aGx[tx][ty] * image[x][y].rgbtGreen;
-
-    //                      gyR+= aGy[tx][ty] * image[x][y].rgbtRed;
-    //                      gyB+= aGy[tx][ty] * image[x][y].rgbtBlue;
-    //                      gyG+= aGy[tx][ty] * image[x][y].rgbtGreen;
-      
-    //                 }
-    //             }
-    //             //printf("\n");
-    //             image[i][j].rgbtRed = check(gxR,gyR);
-    //             image[i][j].rgbtBlue = check(gxB,gyB); 
-    //             image[i][j].rgbtGreen= check(gxG,gyG);                  
-               
-    //         }
-            
-            
-    //     }
-    // }  
