@@ -1,18 +1,27 @@
+#include <stdio.h>
+#include <stdint.h>
+
+
 int main( int argc, char *argv[])
 {
+    FILE *file = fopen(argv[1],"r");
+    char block[512];
     if (argc != 2)
     {
         printf("Usage Error%s\n",argv[1]);
         return 1;
     }
-    FILE * file = fopen(argv[1],"r");
+   
     if(file)
     {   
-        int block[] = malloc(512 *sizof(char)+1);
-        fread(block,sizeof(char),512,File);
-
-
-        fclose(file);
+        while(fread(block,sizeof(char),512,file) != EOF)
+        {
+            for(int i = 0; i < 4; i++)
+            {
+                printf("%iblock[%i]%x\n",i,i,block[i]);
+            }
+        }
+        
     }
     else
     {
