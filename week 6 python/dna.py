@@ -34,12 +34,30 @@ for x in l[0]:
 file = open(sequence,'r')
 temp = (file.readline())
 lengthTemp = len(temp)
-lengthSeq = len(dnaSeq[0])
-
-for i in range(0,lengthTemp):
-    print(temp[i:i+lengthSeq])
 
 
+for n in range(0,len(dnaSeq)):
+    count = 0
+    maxt = 0
+    lengthSeq = len(dnaSeq[n])
+    for i in range(0,lengthTemp):
+        if(temp[i:i+lengthSeq] == dnaSeq[n]):
+            if count == 0:
+                count = 1
+            elif count > 0 and (temp[i-lengthSeq:i] == temp[i:i+lengthSeq]):
+                count+=1
+                
+            elif count > 0 and (temp[i-lengthSeq:i] != temp[i:i+lengthSeq]):
+                count=1
+        if count > maxt:
+            maxt = count
 
+    d[dnaSeq[n]] = maxt
+        
 
+for x in l:
+    for y,k in x.items():
+        for t in d:
+            print(t)
+print(t)
 file.close()
