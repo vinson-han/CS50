@@ -1,30 +1,45 @@
+import csv	
+from sys import argv,exit	
+import re	
+#1 open csv file and dna sequence, read content into mem	
+#2 for each str, compoute the longest run of concescutive in the DNa	
+#3compare str count against each row in the csv file	
+
+
+#if len(argv) != 3:	
+#   print("Usage: python {} data.csv sequence.txt".format(argv[0]))	
+ #   exit(1)	
+
+#filename = argv[1]	
+#sequence = argv[2]	
+
+filename = "databases/small.csv"	
+sequence = "sequences/1.txt"	
+d = dict()	
+l = list()	
+dnaSeq = list()	
+dnatext = list()	
+with open(filename,newline = '') as csvfile: 	
+    reader = csv.DictReader(csvfile)	
     for x in (reader):
         l.append(dict(x))
 
 for x in l[0]:
-    if(x == 'name'):
+    if(x == 'name'):	    
         continue
-    dnaSeq[x] = 0
-    dnalist.append(x)
+    dnaSeq.append(x)
+    d[x] = 0
 
 
-print(dnalist)
+file = open(sequence,'r')
+temp = (file.readline())
+lengthTemp = len(temp)
+lengthSeq = len(dnaSeq[0])
 
-templist = list()
-tempd = dict()
-with open(sequence,newline = '') as file: 
-    reader = file.read()
-
-#remove after
-rl = len(reader)
-i = len(dnalist[0])
+for i in range(0,lengthTemp):
+    print(temp[i:i+lengthSeq])
 
 
 
-count = 0
-temp = list()
-tempd = dict()
-for x in range(0,rl):
-    if dnalist[0] == (reader[x:i+x]):
-            count +=1
-    reader[x] = 1
+
+file.close()
