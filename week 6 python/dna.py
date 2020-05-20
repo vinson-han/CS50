@@ -22,7 +22,7 @@ dnatext = list()
 with open(filename,newline = '') as csvfile: 	
     reader = csv.DictReader(csvfile)	
     for x in (reader):
-        l.append(dict(x))
+        l.append(x)
 
 for x in l[0]:
     if(x == 'name'):	    
@@ -54,10 +54,10 @@ for n in range(0,len(dnaSeq)):
 
     d[dnaSeq[n]] = maxt
         
-
 for x in l:
-    for y,k in x.items():
-        for t in d:
-            print(t)
-print(t)
+    for n,(k,i) in enumerate(x.items()):
+        if(n != 0):
+        print(d[k])
+            
+      
 file.close()
