@@ -1,4 +1,4 @@
-Run your program as python dna.py databases/small.csv sequences/1.txt. Your program should output Bob.
+<li>Run your program as python dna.py databases/small.csv sequences/1.txt. Your program should output Bob.</li>
 Run your program as python dna.py databases/small.csv sequences/2.txt. Your program should output No match.
 Run your program as python dna.py databases/small.csv sequences/3.txt. Your program should output No match.
 Run your program as python dna.py databases/small.csv sequences/4.txt. Your program should output Alice.
