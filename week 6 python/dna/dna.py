@@ -58,7 +58,7 @@ for n in range(0,len(dnaSeq)):
 for y in range(0,len(l)):
     count = 0
     for x in range(0,len(dnaSeq)):
-        if (str(d[dnaSeq[x]]) not in (l[y].values())):
+        if (str(d[dnaSeq[x]]) not in (l[y][dnaSeq[x]])):
             break
         else:
             count+=1
