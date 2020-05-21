@@ -64,6 +64,7 @@ for y in range(0,len(l)):
             count+=1
     if(count == len(dnaSeq)):
         print(l[y]['name'])
+        file.close()
         exit()
 
 print("No Match")
