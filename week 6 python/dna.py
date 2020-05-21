@@ -6,15 +6,15 @@ import re
 #3compare str count against each row in the csv file	
 
 
-#if len(argv) != 3:	
-#   print("Usage: python {} data.csv sequence.txt".format(argv[0]))	
- #   exit(1)	
+if len(argv) != 3:	
+   print("Usage: python {} data.csv sequence.txt".format(argv[0]))	
+   exit(1)	
 
-#filename = argv[1]	
-#sequence = argv[2]	
+filename = argv[1]	
+sequence = argv[2]	
 
-filename = "databases/small.csv"	
-sequence = "sequences/1.txt"	
+# filename = "databases/small.csv"	
+# sequence = "sequences/1.txt"	
 d = dict()	
 l = list()	
 dnaSeq = list()	
@@ -53,11 +53,21 @@ for n in range(0,len(dnaSeq)):
             maxt = count
 
     d[dnaSeq[n]] = maxt
-        
-for x in l:
-    for n,(k,i) in enumerate(x.items()):
-        if(n != 0):
-        print(d[k])
-            
-      
+
+
+for y in range(0,len(l)):
+    count = 0
+    for x in range(0,len(dnaSeq)):
+        if (str(d[dnaSeq[x]]) not in (l[y].values())):
+            break
+        else:
+            count+=1
+    if(count == len(dnaSeq)):
+        print(l[y]['name'])
+        exit()
+
+print("No Match")
+
+
+
 file.close()
