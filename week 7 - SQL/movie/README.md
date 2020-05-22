@@ -1,14 +1,10 @@
 
-* etc
 
-
-
-
+## Usage
 ```
+$ cat filename.sql | sqlite3 movies.db
 ```
-'''
-
-# Testing
+## Testing
 - Executing 1.sql results in a table with 1 column and 9,480 rows.
 - Executing 2.sql results in a table with 1 column and 1 row.
 - Executing 3.sql results in a table with 1 column and 35,755 rows.
