@@ -1,1 +1,13 @@
-
+<li>Executing 1.sql results in a table with 1 column and 9,480 rows.</li>
+<li>Executing 2.sql results in a table with 1 column and 1 row.</li>
+<li>Executing 3.sql results in a table with 1 column and 35,755 rows.</li>
+<li>Executing 4.sql results in a table with 1 column and 1 row.</li>
+<li>Executing 5.sql results in a table with 2 columns and 10 rows.</li>
+<li>Executing 6.sql results in a table with 1 column and 1 row.</li>
+<li>Executing 7.sql results in a table with 2 columns and 6,835 rows.</li>
+<li>Executing 8.sql results in a table with 1 column and 4 rows.</li>
+<li>Executing 9.sql results in a table with 1 column and 18,013 rows.</li>
+<li>Executing 10.sql results in a table with 1 column and 1,841 rows.</li>
+<li>Executing 11.sql results in a table with 1 column and 5 rows.</li>
+<li>Executing 12.sql results in a table with 1 column and 6 rows.</li>
+<li>Executing 13.sql results in a table with 1 column and 176 rows.</li>
