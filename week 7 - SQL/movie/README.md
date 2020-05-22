@@ -1,3 +1,4 @@
+<ol>
 In 1.sql, write a SQL query to list the titles of all movies released in 2008.
 <li>Your query should output a table with a single column for the title of each movie.</li>
 In 2.sql, write a SQL query to determine the birth year of Emma Stone.
@@ -37,7 +38,7 @@ In 13.sql, write a SQL query to list the names of all people who starred in a mo
 <li>Your query should output a table with a single column for the name of each person.
 <li>There may be multiple people named Kevin Bacon in the database. Be sure to only select the Kevin Bacon born in 1958.
 <li>Kevin Bacon himself should not be included in the resulting list.
-
+</ol>
 
 <hr>
 <li>Executing 1.sql results in a table with 1 column and 9,480 rows.</li>
