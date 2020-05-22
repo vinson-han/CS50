@@ -1,104 +1,24 @@
-# Project Title
 
-One Paragraph of project description goes here
-
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
-### Prerequisites
-
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
 * etc
 
 
-<hr>
-<h1>Testing</h1>
-<li>Executing 1.sql results in a table with 1 column and 9,480 rows.</li>
-<li>Executing 2.sql results in a table with 1 column and 1 row.</li>
-<li>Executing 3.sql results in a table with 1 column and 35,755 rows.</li>
-<li>Executing 4.sql results in a table with 1 column and 1 row.</li>
-<li>Executing 5.sql results in a table with 2 columns and 10 rows.</li>
-<li>Executing 6.sql results in a table with 1 column and 1 row.</li>
-<li>Executing 7.sql results in a table with 2 columns and 6,835 rows.</li>
-<li>Executing 8.sql results in a table with 1 column and 4 rows.</li>
-<li>Executing 9.sql results in a table with 1 column and 18,013 rows.</li>
-<li>Executing 10.sql results in a table with 1 column and 1,841 rows.</li>
-<li>Executing 11.sql results in a table with 1 column and 5 rows.</li>
-<li>Executing 12.sql results in a table with 1 column and 6 rows.</li>
-<li>Executing 13.sql results in a table with 1 column and 176 rows.</li>
+
+
+```
+```
+'''
+
+#Testing
+-Executing 1.sql results in a table with 1 column and 9,480 rows.
+-Executing 2.sql results in a table with 1 column and 1 row.
+-Executing 3.sql results in a table with 1 column and 35,755 rows.
+-Executing 4.sql results in a table with 1 column and 1 row.
+-Executing 5.sql results in a table with 2 columns and 10 rows.
+-Executing 6.sql results in a table with 1 column and 1 row.
+-Executing 7.sql results in a table with 2 columns and 6,835 rows.
+-Executing 8.sql results in a table with 1 column and 4 rows.
+-Executing 9.sql results in a table with 1 column and 18,013 rows.
+-Executing 10.sql results in a table with 1 column and 1,841 rows.
+-Executing 11.sql results in a table with 1 column and 5 rows.
+-Executing 12.sql results in a table with 1 column and 6 rows.
+-Executing 13.sql results in a table with 1 column and 176 rows.
