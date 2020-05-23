@@ -1,4 +1,15 @@
-
+#Usage
+```
+$ python import.py characters.csv
+```
+```
+$ python roster.py Gryffindor
+Hermione Jean Granger, born 1979
+Harry James Potter, born 1980
+Ginevra Molly Weasley, born 1981
+Ronald Bilius Weasley, born 1980
+...
+```
 #Testing
 ```
 $ python import.py characters.csv
